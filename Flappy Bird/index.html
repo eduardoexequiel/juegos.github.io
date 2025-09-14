@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flappy Web</title>
+  <meta name="description" content="Juego tipo Flappy Bird en HTML, CSS y JS." />
+  <!-- Tipografías retro -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <main class="app">
+    <!-- TOPBAR: título centrado + puntaje -->
+    <header class="topbar" aria-label="Barra superior con título y puntuación">
+      <div class="topbar__spacer" aria-hidden="true"></div>
+      <h1 class="topbar__title" aria-label="Título del juego">Flappy Web</h1>
+      <div class="scoreboard" role="status" aria-live="polite">
+        <span class="scoreboard__label">Puntos</span>
+        <strong class="scoreboard__value" id="score">0</strong>
+      </div>
+    </header>
+
+    <!-- DASHBOARD: izquierda QR | centro Juego | derecha Top 10 -->
+    <section class="dashboard" aria-label="Panel principal">
+    <!-- Izquierda: QR -->
+<aside class="card qr-card" aria-label="Invitá a tus amigos">
+  <h2 class="card__title">Invitá</h2>
+  <figure class="qr">
+    <img id="qrImg"
+         src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fexample.com%2Fjoin"
+         alt="Código QR para compartir el juego" />
+    <figcaption class="qr__caption">Escaneá y compartí</figcaption>
+  </figure>
+</aside>
+
+      <!-- Centro: Juego -->
+      <section class="card game-card" aria-label="Área del juego">
+        <div class="game-frame">
+          <!-- Detalles decorativos sutiles -->
+          <span class="spark spark--tl" aria-hidden="true"></span>
+          <span class="spark spark--br" aria-hidden="true"></span>
+
+          <canvas id="gameCanvas" width="360" height="640" aria-label="Lienzo del juego"></canvas>
+
+          <div class="hud" aria-hidden="true">
+            <div class="hud__hint"><span>Espacio / ↑ o tocar</span> • <span>P = Pausa</span></div>
+          </div>
+
+          <div class="overlay" id="menu" role="dialog" aria-modal="true" aria-label="Menú del juego">
+            <div class="modal">
+              <h2 class="modal__title">Flappy Web</h2>
+              <p class="modal__text">Evitá los tubos y rompé tu récord.</p>
+              <button id="btnStart" class="btn btn--primary" autofocus>Iniciar</button>
+              <button id="btnPause" class="btn btn--ghost">Pausa (P)</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Derecha: Top 10 -->
+      <aside class="card" aria-label="Top 10">
+        <h2 class="card__title">Top&nbsp;10</h2>
+        <table class="table">
+          <thead>
+            <tr><th>#</th><th>Jugador</th><th>Puntuación</th></tr>
+          </thead>
+          <tbody id="top10Body"><!-- filas por JS --></tbody>
+        </table>
+      </aside>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" aria-label="Pie de página">
+      <p>
+        © 2025 · Hecho por Eduardo ·
+        <span class="kbd">Espacio/↑</span> o tocar · <span class="kbd">P</span> pausar
+      </p>
+    </footer>
+  </main>
+
+  <!-- Lógica del juego -->
+  <script src="./js/script.js" defer></script>
+</body>
+</html>
+
+
